@@ -5,7 +5,7 @@ xb = vg.XUSB_BUTTON
 btns = [xb.XUSB_GAMEPAD_Y, xb.XUSB_GAMEPAD_B, xb.XUSB_GAMEPAD_A, xb.XUSB_GAMEPAD_X, 
         xb.XUSB_GAMEPAD_DPAD_UP, xb.XUSB_GAMEPAD_DPAD_DOWN, xb.XUSB_GAMEPAD_DPAD_LEFT, xb.XUSB_GAMEPAD_DPAD_RIGHT,
         xb.XUSB_GAMEPAD_RIGHT_THUMB, xb.XUSB_GAMEPAD_LEFT_THUMB, xb.XUSB_GAMEPAD_RIGHT_SHOULDER, xb.XUSB_GAMEPAD_LEFT_SHOULDER,
-        xb.XUSB_GAMEPAD_GUIDE, xb.XUSB_GAMEPAD_BACK, xb.XUSB_GAMEPAD_GUIDE, xb.XUSB_GAMEPAD_START]
+        xb.XUSB_GAMEPAD_GUIDE, xb.XUSB_GAMEPAD_BACK, xb.XUSB_GAMEPAD_START]
 
 class Gamepad:
     def __init__(self):
@@ -43,8 +43,9 @@ class Gamepad:
             pass
         if data[0] == 'S':
             _id = int(data[1])
-            x = float(data[3:6])
-            y = float(data[7:10])
+            x = float(data[3:].split(',')[0])
+            y = float(data[3:].split(',')[1].split('Z')[0])
+            print(_id, x, y)
             self.Stick(_id, x, y)
         elif data[0] == 'B':
             _id = int(data[1])
@@ -81,10 +82,7 @@ class Simulator:
         for i in self.passwords:
             if self.passwords[i] == scan_pass:
                 self.gamepads[i].Parse(data[4:])
-a = Simulator(gamepads_amount=2)
-a = Simulator(gamepads_amount=3)
-a. change_passwords(1, 1234)
-a.scan('1234S1;0.1;0.2')
+
             
 
 
