@@ -1,2 +1,2 @@
 # kivyGamepadEmulatorAndroid
-android gamepad emulator on kivy
+android application that turns your phone into a gamepad through http
